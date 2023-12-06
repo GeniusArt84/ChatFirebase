@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
 
-// create user
+// Función para crear nuevo usuario.
 export const createUserAsync = async (creds) => {
   try {
     const user = {
@@ -32,12 +32,13 @@ export const createUserAsync = async (creds) => {
   }
 };
 
-// update user
+// Función para actualizar los datos del usuario.
 export const updateUserAsync = async (updatedUser, profileImage) => {
   try {
     const creds = auth.currentUser;
     const userDoc = doc(db, "users", creds.uid);
-    // let's update the profile image if not null
+
+    // Aquí actualizamos la imagen del usuario (Avatar).
     if (profileImage) {
       const location = `/images/users/${creds.uid}/profile/`;
       const urls = await uploadFiles([profileImage], location);
@@ -57,7 +58,7 @@ export const updateUserAsync = async (updatedUser, profileImage) => {
   }
 };
 
-// delete user
+// Borramos un usuario.
 export const deleteUserAsync = async (id) => {
   try {
     const userDoc = doc(db, "users", id);
@@ -68,7 +69,7 @@ export const deleteUserAsync = async (id) => {
   }
 };
 
-// get all users
+
 export const getUsersAsync = async (user) => {
   if (!user) return;
   try {
@@ -82,7 +83,7 @@ export const getUsersAsync = async (user) => {
   }
 };
 
-// get user
+// Obtenemos los usuarios.
 export const getUserAsync = async (id) => {
   try {
     const userDoc = doc(db, "users", id);
@@ -93,7 +94,7 @@ export const getUserAsync = async (id) => {
   }
 };
 
-// conversations
+// Aquí manejo las conversaciones.
 export const createConversationAsync = async (userId, friendId) => {
   try {
     console.log(userId, friendId);
@@ -107,7 +108,6 @@ export const createConversationAsync = async (userId, friendId) => {
     let result = null;
     const convId = convDoc.id;
     if (convId) {
-      // get friend infos
       const userDoc = doc(db, "users", friendId);
       const user_res = await getDoc(userDoc);
       const user_data = getSnapshotData(user_res);
@@ -125,19 +125,18 @@ export const createConversationAsync = async (userId, friendId) => {
         };
       }
     }
-    // return conversation with contact infos
+    // Devolvemos las conversaciones con la informacion del usuario.
     return result;
   } catch (error) {
     console.log(error);
   }
 };
 
-// Messages
-
+// Aquí manejamos los mensajes. (No se implemento por completo en el proyecto) 
 export const createMessageAsync = async (message, images) => {
+  // Si el usuario cargo una imagen la subimos al Store de FireBase.
   try {
     if (images.length > 0) {
-      //upload first the images
       const location = `/images/messages/${message.conversationId}/`;
       const urls = await uploadFiles(images, location);
       if (urls.length > 0) {
@@ -157,7 +156,6 @@ export const createMessageAsync = async (message, images) => {
     if (messageId) {
       const msg_res = await getDoc(msgDoc);
       const msg = getSnapshotData(msg_res);
-      // update conversation last message
       const convDoc = doc(db, "conversations", msg.conversationId);
       await updateDoc(convDoc, {
         last: { message: msg.message, createdAt: msg.createdAt },
@@ -183,8 +181,7 @@ export const getConversationsQueryByUser = (userId) => {
   );
 };
 
-// helper functions
-
+// Función para subir archivos al Storage.
 const uploadFiles = async (files, location) => {
   let filesUrls = [];
   for (const item of files) {

@@ -33,7 +33,6 @@ export default function Sidebar() {
   const handleSearch = (e) => {
     const toSearch = e.target.value;
     if (newChat) {
-      // start a new conversation
       if (toSearch) {
         setContacts(
           users.filter((usr) =>
@@ -44,7 +43,6 @@ export default function Sidebar() {
         setContacts(users);
       }
     } else {
-      // search conversations
       if (toSearch) {
         setConversations(
           chats.filter((chat) =>
@@ -88,15 +86,12 @@ export default function Sidebar() {
 
   const handleCreateConversation = async (friendId) => {
     if (auth == null) return;
-    // check if conversation exists
     const conv = conversations.find((c) => c.friend.id === friendId);
     if (conv) {
-      // set conv als current conversation
       dispatch({ type: "SET_CURRENT_CHAT", payload: conv });
       localStorage.setItem("convId", JSON.stringify(conv.id));
       setNewChat(false);
     } else {
-      // let's create first a conversation
       const res = await createConversationAsync(auth.id, friendId);
       if (res) {
         localStorage.setItem("convId", JSON.stringify(res.id));

@@ -7,12 +7,12 @@ import {
 import { auth } from "../config/firebase";
 import { createUserAsync } from "./chatServices";
 
-// login
+// Inicio de sesión.
 export const loginAsync = async (creds) => {
   return await signInWithEmailAndPassword(auth, creds.email, creds.password);
 };
 
-// register
+// Registrar.
 export const registerAsync = async (creds) => {
   try {
     const res = await createUserWithEmailAndPassword(
@@ -29,7 +29,7 @@ export const registerAsync = async (creds) => {
   }
 };
 
-// logout
+// Cerrar sesión.
 export const logoutAsync = async () => {
   return await signOut(auth);
 };

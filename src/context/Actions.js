@@ -31,7 +31,6 @@ export const chechAuthUser = (dispatch) => {
         dispatch(loadUsers(users_res));
       }
     } else {
-      // no user, logout...
       await logoutAsync();
     }
   });
