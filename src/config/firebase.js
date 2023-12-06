@@ -4,14 +4,16 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB7zm5e32PT90bwnFOZnEaEM76tn-77Y80",
-  authDomain: "chatfirebase-d2278.firebaseapp.com",
-  projectId: "chatfirebase-d2278",
-  storageBucket: "chatfirebase-d2278.appspot.com",
-  messagingSenderId: "534594852850",
-  appId: "1:534594852850:web:7856ac1ba4ec2d0a4ebd6b",
-  measurementId: "G-YG1YK2NKMT"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
+
+console.log(import.meta.env.VITE_API_KEY)
 
 const app = initializeApp(firebaseConfig);
 
