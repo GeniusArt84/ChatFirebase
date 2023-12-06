@@ -1,10 +1,10 @@
-import NoAvatar from "../assets/images/noavatar.png";
+import NoUser from "../assets/images/user.png";
 
 export default function Avatar({ src, username, height, width }) {
   return (
     <div className="d-flex-row">
       <img
-        src={src ? src : NoAvatar}
+        src={src ? src : NoUser}
         alt=""
         style={{
           height: `${height}px`,
