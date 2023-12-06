@@ -66,7 +66,7 @@ export default function Register() {
             {loading ? "Loading..." : "Register"}
           </button>
           <span className="link">
-            <a href="/login">Already an account? Login here.</a>
+            <a href="/login">Login here.</a>
           </span>
         </form>
       </div>

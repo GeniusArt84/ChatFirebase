@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "../assets/css/content.css";
 import Avatar from "./Avatar";
 import Message from "./Message";
-import { SeedMessages } from "../data/Messages";
 import ImageSlider from "./ImageSlider";
 import InfoContainer from "./InfoContainer";
 import { Context } from "../context/Context";

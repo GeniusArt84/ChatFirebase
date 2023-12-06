@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--blue);
+  background-color: #202225;
 }
 
 .register .wrapper {
@@ -12,8 +12,8 @@
   padding: 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  background-color: var(--white);
-  color: var(--blue);
+  background-color: #ffffff;
+  color: #5865f2;
   border-radius: 0.5rem;
 }
 
@@ -53,7 +53,7 @@
   font-size: 1rem;
   font-weight: bold;
   color: var(--white);
-  background-color: var(--blue);
+  background-color: #5865f2;
   display: flex;
   align-items: center;
   justify-content: center;
